@@ -9,6 +9,7 @@ import Education from "@/components/Education";
 import Skills from "@/components/Skills";
 import Achievements from "@/components/Achievements";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Icon from "@/components/ui/icon";
 
 const Index = () => {
   const profileData = {
