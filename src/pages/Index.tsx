@@ -5,6 +5,10 @@ import ProfileHeader from "@/components/ProfileHeader";
 import ProfileStats from "@/components/ProfileStats";
 import Summary from "@/components/Summary";
 import Experience from "@/components/Experience";
+import Education from "@/components/Education";
+import Skills from "@/components/Skills";
+import Achievements from "@/components/Achievements";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const Index = () => {
   const profileData = {
@@ -41,6 +45,58 @@ const Index = () => {
     }
   ];
 
+  const educationItems = [
+    {
+      id: "1",
+      institution: "Московский Государственный Университет",
+      logo: "https://via.placeholder.com/100?text=МГУ",
+      degree: "Магистр",
+      field: "Маркетинг и управление продажами",
+      dateRange: "2010 - 2012"
+    },
+    {
+      id: "2",
+      institution: "Российский экономический университет",
+      logo: "https://via.placeholder.com/100?text=РЭУ",
+      degree: "Бакалавр",
+      field: "Экономика",
+      dateRange: "2006 - 2010"
+    }
+  ];
+
+  const skillsData = [
+    { id: "1", name: "B2B Продажи", level: 90, category: "Продажи" },
+    { id: "2", name: "Управление командой", level: 85, category: "Лидерство" },
+    { id: "3", name: "CRM Системы", level: 75, category: "Программное обеспечение" },
+    { id: "4", name: "Анализ данных", level: 65, category: "Аналитика" },
+    { id: "5", name: "Переговоры", level: 95, category: "Коммуникация" },
+    { id: "6", name: "Маркетинговые стратегии", level: 80, category: "Маркетинг" }
+  ];
+
+  const achievementsData = [
+    {
+      id: "1",
+      title: "Лучший менеджер года",
+      date: "Декабрь 2023",
+      description: "Награда за превышение целевых показателей продаж на 150% и привлечение 3 крупных клиентов.",
+      icon: "Award"
+    },
+    {
+      id: "2",
+      title: "Сертификация по управлению продажами",
+      date: "Март 2022",
+      description: "Получена международная сертификация по стратегическому управлению продажами.",
+      icon: "Certificate"
+    },
+    {
+      id: "3",
+      title: "Запуск нового направления продаж",
+      date: "Июнь 2021",
+      description: "Успешно запущено новое направление B2B продаж, достигнута рентабельность в течение 3 месяцев.",
+      icon: "Rocket"
+    }
+  ];
+
   const summaryText = "Специалист по управлению продажами с более чем 10-летним опытом обучения и руководства отделами продаж. Опыт разработки и внедрения стратегий продаж на различных территориях. Нацелен на развитие команды и запуск успешных маркетинговых кампаний.";
 
   return (
@@ -57,11 +113,58 @@ const Index = () => {
             </div>
             
             <div className="mt-6">
-              <Experience 
-                items={experienceItems} 
-                onAdd={() => console.log("Add experience")} 
-                onEdit={(id) => console.log("Edit experience", id)} 
-              />
+              <Tabs defaultValue="experience" className="w-full">
+                <TabsList className="grid grid-cols-4 mb-4">
+                  <TabsTrigger value="experience" className="flex items-center gap-2">
+                    <Icon name="Briefcase" size={16} />
+                    <span className="hidden sm:inline">Опыт</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="education" className="flex items-center gap-2">
+                    <Icon name="GraduationCap" size={16} />
+                    <span className="hidden sm:inline">Образование</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="skills" className="flex items-center gap-2">
+                    <Icon name="Lightbulb" size={16} />
+                    <span className="hidden sm:inline">Навыки</span>
+                  </TabsTrigger>
+                  <TabsTrigger value="achievements" className="flex items-center gap-2">
+                    <Icon name="Trophy" size={16} />
+                    <span className="hidden sm:inline">Достижения</span>
+                  </TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="experience">
+                  <Experience 
+                    items={experienceItems} 
+                    onAdd={() => console.log("Add experience")} 
+                    onEdit={(id) => console.log("Edit experience", id)} 
+                  />
+                </TabsContent>
+                
+                <TabsContent value="education">
+                  <Education 
+                    items={educationItems} 
+                    onAdd={() => console.log("Add education")} 
+                    onEdit={(id) => console.log("Edit education", id)} 
+                  />
+                </TabsContent>
+                
+                <TabsContent value="skills">
+                  <Skills 
+                    skills={skillsData} 
+                    onAdd={() => console.log("Add skill")} 
+                    onEdit={(id) => console.log("Edit skill", id)} 
+                  />
+                </TabsContent>
+                
+                <TabsContent value="achievements">
+                  <Achievements 
+                    items={achievementsData} 
+                    onAdd={() => console.log("Add achievement")} 
+                    onEdit={(id) => console.log("Edit achievement", id)} 
+                  />
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
           
